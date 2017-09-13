@@ -5,18 +5,18 @@ import {
   ITinyControllers,
   TinyRoute,
   TinyRouteWithAuthen,
-  TinyRouterOptions,
+  TinyRoutersOptions,
   TinyRoutes
 } from '../index';
 
-class TinyRouter<T, DocType extends Document> {
+class TinyRouters<T, DocType extends Document> {
   private _tinyController: ITinyControllers;
   private _apiName: string;
   private _baseUrl: string;
   private _router: Router;
   private _allRoutes: TinyRoutes = ['find', 'get', 'post', 'put', 'delete'];
 
-  constructor(options: TinyRouterOptions<DocType>) {
+  constructor(options: TinyRoutersOptions<DocType>) {
     this._tinyController = new TinyController<T, DocType>(options.model);
     this._router = options.router;
   }
@@ -101,4 +101,4 @@ class TinyRouter<T, DocType extends Document> {
   }
 }
 
-export { TinyRouter };
+export { TinyRouters };

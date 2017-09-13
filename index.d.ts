@@ -16,17 +16,35 @@ declare type TinyRouteWithAuthen = {
   middlewares?: Function | Function[];
 };
 
-declare type TinyRouterOptions<DocType extends Document> = {
+declare type TinyRoutersOptions<DocType extends Document> = {
   model: Model<DocType>;
   router: Router;
 };
 
 declare type TinyRoutes = [TinyRoute | TinyRouteWithAuthen];
 
+declare class TinyRouters<T, DocType extends Document> {
+  private _tinyController;
+  private _apiName;
+  private _baseUrl;
+  private _router;
+  private _allRoutes;
+  constructor(options: TinyRoutersOptions<DocType>);
+  all(middlewares?: any): void;
+  only(routes: TinyRoutes): void;
+  private find(middlewares?);
+  private get(middlewares?);
+  private post(middlewares?);
+  private put(middlewares?);
+  private delete(middlewares?);
+  private add(route);
+}
+
 export {
   ITinyControllers,
   TinyRoute,
   TinyRouteWithAuthen,
-  TinyRouterOptions,
-  TinyRoutes
+  TinyRoutersOptions,
+  TinyRoutes,
+  TinyRouters
 };
