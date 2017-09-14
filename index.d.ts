@@ -2,11 +2,11 @@ import { Request, Response, NextFunction, Router } from 'express';
 import { Document, Model } from 'mongoose';
 
 declare interface ITinyControllers {
-  doFind(req: Request, res: Response);
-  doGet(req: Request, res: Response);
+  doFind(req: Request, res: Response, next: NextFunction);
+  doGet(req: Request, res: Response, next: NextFunction);
   doPost(req: Request, res: Response, next: NextFunction);
-  doPut(req: Request, res: Response);
-  doDelete(req: Request, res: Response);
+  doPut(req: Request, res: Response, next: NextFunction);
+  doDelete(req: Request, res: Response, next: NextFunction);
 }
 
 declare type TinyRoute = 'find' | 'get' | 'post' | 'put' | 'delete';

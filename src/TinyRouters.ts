@@ -1,6 +1,6 @@
 import { Request, Response, Router, NextFunction } from 'express';
 import { Document } from 'mongoose';
-import { TinyController } from 'tiny-controllers';
+import { TinyControllers } from 'tiny-controllers';
 import {
   ITinyControllers,
   TinyRoute,
@@ -17,7 +17,7 @@ class TinyRouters<T, DocType extends Document> {
   private _allRoutes: TinyRoutes = ['find', 'get', 'post', 'put', 'delete'];
 
   constructor(options: TinyRoutersOptions<DocType>) {
-    this._tinyController = new TinyController<T, DocType>(options.model);
+    this._tinyController = new TinyControllers<T, DocType>(options.model);
     this._router = options.router;
   }
   all(middlewares?) {
@@ -34,23 +34,23 @@ class TinyRouters<T, DocType extends Document> {
   }
   private find(middlewares?) {
     if (middlewares) {
-      this._router.get('/', middlewares, (req: Request, res: Response) =>
-        this._tinyController.doFind(req, res)
+      this._router.get('/', middlewares, (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doFind(req, res, next)
       );
     } else {
-      this._router.get('/', (req: Request, res: Response) =>
-        this._tinyController.doFind(req, res)
+      this._router.get('/', (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doFind(req, res, next)
       );
     }
   }
   private get(middlewares?) {
     if (middlewares) {
-      this._router.get('/:id', middlewares, (req: Request, res: Response) =>
-        this._tinyController.doGet(req, res)
+      this._router.get('/:id', middlewares, (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doGet(req, res, next)
       );
     } else {
-      this._router.get('/:id', (req: Request, res: Response) =>
-        this._tinyController.doGet(req, res)
+      this._router.get('/:id', (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doGet(req, res, next)
       );
     }
   }
@@ -72,23 +72,23 @@ class TinyRouters<T, DocType extends Document> {
   }
   private put(middlewares?) {
     if (middlewares) {
-      this._router.put('/:id', middlewares, (req: Request, res: Response) =>
-        this._tinyController.doPut(req, res)
+      this._router.put('/:id', middlewares, (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doPut(req, res, next)
       );
     } else {
-      this._router.put('/:id', (req: Request, res: Response) =>
-        this._tinyController.doPut(req, res)
+      this._router.put('/:id', (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doPut(req, res, next)
       );
     }
   }
   private delete(middlewares?) {
     if (middlewares) {
-      this._router.delete('/:id', middlewares, (req: Request, res: Response) =>
-        this._tinyController.doDelete(req, res)
+      this._router.delete('/:id', middlewares, (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doDelete(req, res, next)
       );
     } else {
-      this._router.delete('/:id', (req: Request, res: Response) =>
-        this._tinyController.doDelete(req, res)
+      this._router.delete('/:id', (req: Request, res: Response, next: NextFunction) =>
+        this._tinyController.doDelete(req, res, next)
       );
     }
   }
