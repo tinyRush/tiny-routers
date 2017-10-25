@@ -23,13 +23,13 @@ declare type TinyRoutersOptions<DocType extends Document> = {
 
 declare type TinyRoutes = [TinyRoute | TinyRouteWithAuthen];
 
-declare class TinyRouters<T, DocType extends Document> {
+declare class TinyRouters<T extends Document> {
   private _tinyController;
   private _apiName;
   private _baseUrl;
   private _router;
   private _allRoutes;
-  constructor(options: TinyRoutersOptions<DocType>);
+  constructor(options: TinyRoutersOptions<T>);
   all(middlewares?: any): void;
   only(routes: TinyRoutes): void;
   private find(middlewares?);
